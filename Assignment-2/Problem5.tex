@@ -1,0 +1,339 @@
+\documentclass[12pt,a4]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \input{Problems_head}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath,amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[normalem]{ulem}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{datetime,verbatim}
+\usepackage{bm}
+\usepackage{xcolor}
+\usepackage[makeroom]{cancel}
+\usepackage{pgffor}
+\graphicspath{ {./images/} }
+ 
+%%%%%%%%%%%%%%%%%%%%%    page setup   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+\textheight=235truemm \textwidth=175truemm \hoffset=-15truemm
+\voffset=-15truemm
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%   matrix extension  %%%%%%%%
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{proofNoQED}[1]{\smallskip\noindent{\it Proof #1.}\ \rm}
+{\hfill \smallskip}
+\newcommand{\ProofNoQED}[1]{\smallskip\noindent{\it Proof} #1\ \hfill\smallskip}
+%\renewcommand{\qedsymbol}{\text{$\square$}}
+\newtheorem{problem}{Problem}
+\newtheorem{solution}{Solution to the problem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%   Definitions       %%%%%%%
+
+
+\newcommand\rank{\operatorname{rank}}
+\newcommand{\trace}{\operatorname{tr}}
+\newcommand{\ls}{\operatorname{ls}}
+% \newcommand\grad{\operatorname{grad}}
+\newcommand{\grad}{\nabla}
+\DeclareMathOperator{\sgn}{sgn}
+
+\newcommand{\ov}{\overline}
+\newcommand{\wt}{\widetilde}
+
+\newcommand{\bN}{{\mathbb N}}
+\newcommand{\bR}{{\mathbb R}}
+\newcommand{\bZ}{{\mathbb Z}}
+
+\newcommand{\ba}{{\mathbf a}}
+\newcommand{\bb}{{\mathbf b}}
+\newcommand{\bff}{{\mathbf f}}
+
+\newcommand{\bu}{{\mathbf u}}
+\newcommand{\bv}{{\mathbf v}}
+\newcommand{\bp}{{\mathbf p}}
+\newcommand{\bq}{{\mathbf q}}
+\newcommand{\br}{{\mathbf r}}
+\newcommand{\bx}{{\mathbf x}}
+\newcommand{\by}{{\mathbf y}}
+\newcommand{\bw}{{\mathbf w}}
+\newcommand{\be}{{\mathbf e}}
+\newcommand{\bA}{{\mathbf A}}
+
+\newcommand{\cB}{{\mathcal B}}
+\newcommand{\cF}{{\mathcal F}}
+\newcommand{\cG}{{\mathcal G}}
+\newcommand{\cN}{{\mathcal N}}
+\newcommand{\cP}{{\mathcal P}}
+\newcommand{\cT}{{\mathcal T}}
+\newcommand{\bbeta}{{\pmb \beta}}
+
+\newcommand{\one}{{\mathbf 1}}
+\newcommand{\zero}{{\mathbf 0}}
+
+\renewcommand{\Im}{{\mathcal C}}
+\newcommand{\Ker}{{\mathcal N}}
+
+\newcommand{\sprod}[2]{\left \langle #1, #2 \right \rangle}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\abs}[1]{\left | #1 \right |}
+\newcommand{\vect}[1]{\overrightarrow{#1}}
+
+\newcommand{\answer}[1]{\textbf{Answer:} #1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+	
+\begin{center}
+	\Large\bf{Statistics\\Assignment 2}
+\end{center}
+Solutions are by Yaroslava Lochman.
+	%\vspace{.5cm}
+
+\addtocounter{problem}{4}
+% \begin{problem}[]\rm
+% % \begin{enumerate}[(a)] .
+% 	(b) Let $1-\alpha $ be confidence level: $P(\abs{X - E(X)} \geq c) \leq \alpha$. From the Tschebyscheff inequality:
+% \[
+% P(\abs{X - E(X)} \geq c) \leq \frac{Var(X)}{c^2} = \alpha
+% ~\Rightarrow~
+% c = \sqrt{\frac{Var(X)}{\alpha}}
+% \]
+% Let $E(X_i)=\mu$, $Var(X_i)=\sigma^2$.\\[5pt]
+% $
+% \text{For }~
+% \bar X_n= \frac1n\sum_{i=1}^n X_i \qquad
+% E\bar X_n = \mu, \quad
+% Var(\bar X_n) = \frac{\sigma^2}{n}
+% ~\Rightarrow~
+% c = \frac{\sigma}{\sqrt{n\alpha}}
+% $ :
+% \[
+% P\left (\abs{\overline X - \mu} \geq \frac{\sigma}{\sqrt{n\alpha}}\right ) \leq \alpha
+% \]\\[5pt]
+% $
+% \text{For }~
+% \hat\sigma^2_n= \frac1{n-1}\sum_{i=1}^n (X_i - \bar X)^2
+% \qquad
+% E\hat\sigma^2_n = \sigma^2, \quad
+% Var(\hat\sigma^2_n) = \frac{2\sigma^4}{n-1}
+% ~\Rightarrow~
+% c = \frac{\sqrt2\sigma^2}{\sqrt{(n-1)\alpha}}
+% $ :
+% \[
+% P\left (\abs{\hat\sigma^2_n - \sigma^2} \geq \sqrt{\frac{2}{(n-1)\alpha}}~\sigma^2 \right ) \leq \alpha
+% \]
+% % \end{enumerate}	
+% \end{problem}
+
+% \begin{problem}[]\rm
+% \begin{enumerate}[(a)] .
+% 	\item $X_1, \dots, X_n \sim t_d$
+% 	\[
+% 	f(x_i) = \frac{(1 + \frac{x_i^2}{d})^{-\frac{d+1}2}}{B(d/2, 1/2) \sqrt d}
+% 	\]
+% 	\[
+% 	L_d(x_1, \dots, x_n) =
+% 	\prod_{i=1}^n \frac{(1 + \frac{x_i^2}{d})^{-\frac{d+1}2}}{B(d/2, 1/2) \sqrt d} =
+% 	\frac{\prod_{i=1}^n (1 + \frac{x_i^2}{d})^{-\frac{d+1}2}}{B^n(d/2, 1/2) \cdot d^{n/2}}
+% 	\]
+% 	\[
+% 	\ln L_d(x_1, \dots, x_n) =
+% 	\frac{-\frac{d+1}2 \sum_{i=1}^n \ln(1 + \frac{x_i^2}{d})}{n \ln(B(d/2, 1/2) \cdot \sqrt d)}
+% 	\]
+% \end{enumerate}	
+% \end{problem}
+
+\begin{problem}[]\rm \begin{enumerate}[(a)] .
+	\item Let $y_i = \beta_0 + \sum_{k=1}^K \beta_k x_{ik} + u_i,~ i=\overline{1,N}$ -- a linear regression model for $y_i$. 
+\[
+\hat y_i = \hat \beta_0 + \sum_{k=1}^K \beta_k x_{ik}
+\qquad
+\hat u_i = y_i - \hat y_i
+\]
+Let $y_i^* = y_i + 10$. To get the same least squares of residuals:
+\[
+\hat u^*_i = \hat u_i = (y_i + 10 - 10) - \hat y_i= (y_i + 10) - (\hat y_i + 10) = y^*_i - \hat y^*_i
+\]
+we should have $\hat y^*_i = \hat y_i + 10 = (\hat \beta_0+10) + \sum_{k=1}^K \beta_k x_{ik}$. So $\hat \beta^*_0 = \hat \beta_0+10$
+\[
+\bar y^* = \frac{\sum_{i=1}^Ny_i^*}{N} = \bar y + 10
+\qquad
+s^2_{y^*} = \frac{\sum_{i=1}^N(y_i^*-\bar y^*)^2}{N-1} = \frac{\sum_{i=1}^N(y_i-\bar y)^2}{N-1} = s^2_y
+\]
+\[
+\Rightarrow ~
+R^{*2} =
+1 - \frac{\sum_{i=1}^N\hat u^{*2}_i}{s^2_{y^*}} = 
+1 - \frac{\sum_{i=1}^N\hat u^{2}_i}{s^2_y} = R^2
+\]
+	% \item Let $y_i = \beta_0 + \sum_{k=1}^K \beta_k x_{ik} + u_i,~ i=\overline{1,N}$ -- a linear regression model for $y_i$. 
+Let's also show it in matrix form:
+\[
+\by = X\bbeta + \bu, \quad \hat \by = X\hat\bbeta, \quad \hat \bu = \by - \hat \by
+\]
+\[
+X \in N\times (K+1), \quad \by,\hat\by, \bu \in \bR^N, \quad \bbeta, \hat \bbeta \in \bR^{K+1}
+\]
+The paramaters from OLS:
+\[
+\hat \bbeta = (X^\top X)^{-1}X^\top \by
+\]
+Let $(X^\top X)^{-1} = \bA = \begin{pmatrix} \ba_0^\top \\ \vdots \\ \ba_K^\top\end{pmatrix}$.
+~Then $\hat \bbeta = \bA X^\top \by$, ~$\hat \beta_0 = \ba_0^\top X^\top \by$.\\[5pt]
+% \[
+% R^2 =
+% 1 - \frac{\sum_{i=1}^N\hat u^2_i}{s^2_y}
+% \]
+Let $y_i^* = y_i + 10$.
+\[
+\by^* = \by + 10 \cdot \one,
+\quad
+\one = \begin{pmatrix}1 \\ \vdots \\ 1\end{pmatrix}\in\bR^N
+\]
+\[
+\hat \bbeta^* = \bA X^\top \by^* =
+\bA X^\top \by + 10 \bA X^\top \one
+\qquad
+\hat \beta^*_0 =
+\hat \beta_0 + 10~\ba_0^\top X^\top \one
+% = 
+% \hat \beta_0 + 10~\ba_0^\top \bar \bx,
+% \quad
+% \bar \bx = \begin{pmatrix} 1 \\ \frac1N\sum_{i=1}^N x_{i1} \\ \vdots \\ \frac1N\sum_{i=1}^N x_{iK}\end{pmatrix}= \frac1N X^\top \one \in R^{K+1}
+\]
+\[
+\hat \by^* =
+X\hat \bbeta^* =
+X\hat \bbeta + 10 X\bA X^\top \one  =
+\hat \by + 10 X\bA X^\top \one
+\]
+Let's prove that $X\bA X^\top\one = \one$. Indeed, since $P = X(X^\top X)^{-1} X^\top$ is the projector onto the column space $\Im(X)$ and the first column is $\one$: $P\one = \one$. So:
+\[
+\hat \by^* = \hat \by + 10 \cdot \one
+\]
+From this one can also see that $\bA X^\top\one = \be_1 = \begin{pmatrix}1 & 0 & \cdots & 0\end{pmatrix}^\top\in\bR^{K+1}$ as the coefficients for the linear combination of columns of $X$ to get $\one$, and hence:
+\[
+\hat \bbeta^* = \bA X^\top \by + 10 \be_1
+\quad
+\hat \beta^*_0 =\hat \beta_0 + 10
+\]
+\[
+\hat \bu^* = \by^* - \hat \by^* =
+\by + 10 \cdot \one - \hat \by - 10 \cdot \one =
+\hat \bu
+\]
+\[
+R^{*2} =
+% 1 - \frac{\sum_{i=1}^N\hat u^{*2}_i}{s^2_{y^*}} = 
+% 1 - \frac{\sum_{i=1}^N\hat u^{*2}_i}{s^2_y} =
+1 - \frac{\norm{\hat\bu^*}^2}{s^2_{y^*}} =
+1 - \frac{\norm{\hat\bu}^2}{s^2_y} = R^2
+\]
+\answer{$
+\hat \beta^*_0 - \hat \beta_0 = 10;\\[5pt]
+\hspace*{18mm}
+R^{*2} = R^2;
+$}\\[5pt]
+Now let $y_i^* = y_i - 10$. Similarly $\hat \bbeta^* = \hat \bbeta - 10\be_1$,
+\[
+\qquad
+\hat \beta^*_0 - \hat \beta_0 = -10
+\qquad
+R^{*2} = R^2
+\]
+So for $\delta_y$ we have $y_i^* = y_i + \delta_y$: $\hat \beta^*_0 = \hat \beta_0 + \delta_y,
+\quad
+\hat \beta^*_i = \hat \beta_i ~(i=\overline{1,K}),
+\quad
+R^{*2} = R^2
+$
+% \answer{$
+% \hat \beta^*_0 - \hat \beta_0 = -10;\\[5pt]
+% \hspace*{18mm}
+% R^{*2} = R^2
+% $}\\[5pt]
+% In the simplest LR (here $\bar \bx = \sum_{i-1}^N x_i$):
+% \[
+% X^\top X = N
+% \begin{pmatrix}
+% 1 & \bar \bx \\
+% \bar \bx & \tilde{s}^2 + (\bar \bx)^2
+% \end{pmatrix}
+% \]
+% \[
+% \bA = \frac1{N \tilde{s}^2}
+% \begin{pmatrix}
+% \tilde{s}^2 + (\bar \bx)^2 & - \bar \bx \\
+% -\bar \bx & 1
+% \end{pmatrix}
+% \qquad
+% \bA \begin{pmatrix} 1 \\ \bar \bx\end{pmatrix} = \frac1{N \tilde{s}^2}
+% \begin{pmatrix}
+% \tilde{s}^2 + (\bar \bx)^2 & - \bar \bx \\
+% -\bar \bx & 1
+% \end{pmatrix}
+% \begin{pmatrix} 1 \\ \bar \bx\end{pmatrix} 
+% = \frac1{N}
+% \begin{pmatrix} 1 \\ 0\end{pmatrix} 
+% \]
+% For $y_i^* = y_i + 10$: $\hat \beta^*_0 - \hat \beta_0 = 10$\\[5pt]
+% \hspace*{30mm}
+% $
+% R^{*2} = R^2
+% $\\[5pt]
+% For $y_i^* = y_i - 10$: $\hat \beta^*_0 - \hat \beta_0 = -10$\\[5pt]
+% \hspace*{30mm}
+% $R^{*2} = R^2$
+\item Now let's continue with a linear regression model:
+\[
+\hat y_i = \hat \beta_0 + \hat \beta_1 x_{i1} + \cdots + \hat \beta_K x_{iK}
+\]
+If we change say all $x_{i1}$ by $\delta_1$: $x^*_{i1} = x_{i1} + \delta_1$, similarly from the OLS we should get the same $\hat y^*_i = \hat y_i$, since the change of $x_{i1}$ is linear. So:
+\[
+\hat y_i = \hat \beta_0 + \hat \beta_1 x_{i1} + \cdots + \hat \beta_K x_{iK} = \hat \beta_0 + \hat \beta_1 (x_{i1} + \delta_1 - \delta_1) + \cdots + \hat \beta_K x_{iK} = \hat \beta_0 + \hat \beta_1 x^*_{i1} - \hat \beta_1\delta_1 + \cdots + \hat \beta_K x_{iK} =
+\]
+\[
+ = (\hat \beta_0 - \hat \beta_1\delta_1) + \hat \beta_1 x^*_{i1} + \cdots + \hat \beta_K x_{iK} = \hat \beta^*_0 + \hat \beta^*_1 x^*_{i1} + \cdots + \hat \beta^*_K x_{iK}
+\]
+\[
+\hat \beta^*_0  = \hat \beta_0 - \hat \beta_1\delta_1
+\]
+So in general for $x^*_{ik} = x_{ik} + \delta_k$:
+\[
+\hat \beta^*_0 = \hat \beta_0 - \sum_{k=1}^K \hat \beta_k \delta_k
+\]
+\[
+\hat u^*_i = \hat u_i
+~\Rightarrow~
+R^{*2} = R^2
+\]
+\item Using the above conclusions, we can get the result of demeaning: $y^*_i = y_i - \bar y$, $x^*_{ik} = x_{ik} - \bar x_k$, $k=\overline{1,K}$, $i=\overline{1,N}$. Now we will have:
+\[
+\hat \beta^*_0 = \hat \beta_0 + \sum_{k=1}^K \hat \beta_k \bar x_k - \bar y
+\qquad
+R^{*2} = R^2
+\]
+\end{enumerate}	
+\end{problem}
+% \begin{solution}[]
+% \input{Problem14}
+% \end{solution}
+
+\end{document}
+
